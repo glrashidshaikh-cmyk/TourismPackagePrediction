@@ -1,5 +1,4 @@
 name: tourism_project
-
 on:
   push:
     branches:
