@@ -18,7 +18,7 @@ jobs:
       - name: Upload Dataset to Hugging Face Hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: python data/tourism.csv
+        run: python data_register.py
 
   data-prep:
     needs: register-dataset
