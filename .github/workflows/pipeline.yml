@@ -20,7 +20,7 @@ jobs:
           python-version: "3.10"
 
       - name: Install dependencies
-        run: pip install -r tourism_project/requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Upload dataset to Hugging Face Hub
         env:
@@ -41,7 +41,7 @@ jobs:
           python-version: "3.10"
 
       - name: Install dependencies
-        run: pip install -r tourism_project/requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Run data preparation
         env:
@@ -62,7 +62,7 @@ jobs:
           python-version: "3.10"
 
       - name: Install dependencies
-        run: pip install -r tourism_project/requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Start MLflow server
         run: |
@@ -88,7 +88,7 @@ jobs:
           python-version: "3.10"
 
       - name: Install dependencies
-        run: pip install -r tourism_project/requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Deploy app to Hugging Face Space
         env:
