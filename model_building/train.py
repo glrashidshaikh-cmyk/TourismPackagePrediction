@@ -22,10 +22,10 @@ mlflow.set_experiment("mlops-training-experiment")
 api = HfApi()
 
 
-Xtrain_path = "hf://datasets/RashidShaikhCFA/TourismPackagePrediction/Xtrain.csv"
-Xtest_path = "hf://datasets/RashidShaikhCFA/TourismPackagePrediction/Xtest.csv"
-ytrain_path = "hf://datasets/RashidShaikhCFA/TourismPackagePrediction/ytrain.csv"
-ytest_path = "hf://datasets/RashidShaikhCFA/TourismPackagePrediction/ytest.csv"
+Xtrain_path = "hf://datasets/RashidShaikhCFA/TourismPackagePrediction-data/Xtrain.csv"
+Xtest_path = "hf://datasets/RashidShaikhCFA/TourismPackagePrediction-data/Xtest.csv"
+ytrain_path = "hf://datasets/RashidShaikhCFA/TourismPackagePrediction-data/ytrain.csv"
+ytest_path = "hf://datasets/RashidShaikhCFA/TourismPackagePrediction-data/ytest.csv"
 
 Xtrain = pd.read_csv(Xtrain_path)
 Xtest = pd.read_csv(Xtest_path)

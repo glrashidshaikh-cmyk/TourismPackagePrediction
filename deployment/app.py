@@ -3,15 +3,20 @@ import pandas as pd
 from huggingface_hub import hf_hub_download
 import joblib
 
-# Download and load the trained model
-model_path = hf_hub_download(repo_id="RashidShaikhCFA/TourismPackagePrediction", filename="best_prediction_model_v1.joblib")
+# Download and load trained model
+model_path = hf_hub_download(
+    repo_id="RashidShaikhCFA/TourismPackagePrediction",
+    filename="best_prediction_model_v1.joblib"
+)
 model = joblib.load(model_path)
 
-# Streamlit UI
+st.set_page_config(page_title="Tourism Package Prediction", layout="wide")
+
 st.title("🌍 Tourism Package Prediction")
 st.write("Predict whether a customer is likely to purchase the tourism package.")
 
-# User input
+user_input = {}
+
 col1, col2, col3 = st.columns(3)
 
 with col1:
@@ -48,37 +53,17 @@ with col6:
 
 input_df = pd.DataFrame([user_input])
 
-# Convert binary-like fields if your training pipeline expects numeric values
 input_df["Passport"] = input_df["Passport"].map({"Yes": 1, "No": 0})
 input_df["OwnCar"] = input_df["OwnCar"].map({"Yes": 1, "No": 0})
 
 st.subheader("Input Data")
 st.dataframe(input_df, use_container_width=True)
 
-# Assemble input into DataFrame
-input_data = pd.DataFrame([{
-      'Age': Age,
-    'TypeofContact': TypeofContact,
-    'CityTier': CityTier,
-    'DurationOfPitch': DurationOfPitch,
-    'Occupation': Occupation,
-    'Gender': Gender,
-    'NumberOfPersonVisiting': NumberOfPersonVisiting,
-    'NumberOfFollowups': NumberOfFollowups,
-    'ProductPitched': ProductPitched,
-    'PreferredPropertyStar': PreferredPropertyStar,
-    'MaritalStatus': MaritalStatus,
-    'NumberOfTrips': NumberOfTrips,
-    'Passport': Passport,
-    'PitchSatisfactionScore': PitchSatisfactionScore,
-    'OwnCar': OwnCar,
-    'NumberOfChildrenVisiting': NumberOfChildrenVisiting,
-    'Designation': Designation,
-    'MonthlyIncome': MonthlyIncome
-}])
-
-# Predict button
 if st.button("Predict"):
-    prediction = model.predict(input_data)[0]
-    st.subheader("Prediction Result:")
-    st.success(f"The Customer is Likely to buy the Travel Package")
+    prediction = model.predict(input_df)[0]
+
+    st.subheader("Prediction Result")
+    if prediction == 1:
+        st.success("The customer is likely to buy the travel package.")
+    else:
+        st.warning("The customer is not likely to buy the travel package.")
